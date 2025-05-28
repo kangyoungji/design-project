@@ -89,11 +89,33 @@ let customHover=document.querySelectorAll(".custom-hover");
 
 > 화면의 위치에 따라 "TOP" 버튼이 동적으로 나타나고 사라지며, 버튼을 클릭하면 페이지의 최상단으로 부드럽게 스크롤 이동할 수 있는 기능을 구현하였습니다.
 
+![Image](https://github.com/user-attachments/assets/65426bc8-1155-423c-a722-05005a2de5ba)  
 
+![JavaScript](https://img.shields.io/badge/-JavaScript-dc8d2d?style=flat-square&logo=javascript&logoColor=ffffff)
+```
+	window.addEventListener("scroll", function(){
+		let winH=window.innerHeight;
 
-
-
-
+		if(window.scrollY > winH){
+			if(!pageTop.classList.contains("show")){
+				pageTop.classList.add("show");
+			}
+		}
+		else{
+			if(pageTop.classList.contains("show")){
+				pageTop.classList.remove("show");
+			}
+		}
+	});
+```
+>위 스크립트로 페이지를 스크롤할 때, 현재 스크롤 위치가 화면 높이보다 클 경우 pageTop 버튼이 표시됩니다.  
+>반대로 스크롤 위치가 화면 높이 이하로 내려가면 버튼이 숨겨집니다.
+```
+	pageTop.addEventListener("click", function(){
+		gsap.to(window, { scrollTo: 0, duration: 0.3, ease: Power3.easeOut });
+	});
+```
+>pageTop 버튼을 클릭하면, 페이지가 부드럽게 최상단으로 스크롤됩니다. GSAP 라이브러리를 사용하여 애니메이션 효과를 추가합니다.
 
 
 
